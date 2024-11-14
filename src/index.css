@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: "Inter", system-ui, sans-serif;
+  }
+
+  body {
+    @apply bg-background text-text;
+  }
+}
+
+/* Optional: Add custom styles here */
+.hero-slide {
+  @apply absolute w-full h-full transition-opacity duration-1000;
+}
+
+.hero-slide.active {
+  @apply opacity-100;
+}
+
+.hero-slide:not(.active) {
+  @apply opacity-0;
+}

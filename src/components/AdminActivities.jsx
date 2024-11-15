@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Plus, Edit2, Trash2, Search, Upload } from "lucide-react";
 import { format } from "date-fns";
+import logo from "../assets/logo_2.png";
 
 const AdminActivities = () => {
   const [activities, setActivities] = useState([
@@ -51,7 +52,8 @@ const AdminActivities = () => {
     <div className="min-h-screen bg-background">
       {/* Admin Header */}
       <div className="bg-text text-background py-8">
-        <div className="container mx-auto px-4">
+        <div className="container flex flex-col justify-center items-center space-y-8 mx-auto px-4">
+          <img src={logo} alt="Logo" className="w-36" />
           <h1 className="text-2xl font-bold">Activity Management</h1>
         </div>
       </div>

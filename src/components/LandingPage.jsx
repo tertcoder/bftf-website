@@ -1,17 +1,20 @@
-import { useState, useEffect } from "react";
 import youth from "../assets/youth.png";
 import community from "../assets/community_hearth.jpg";
 import environment_project from "../assets/environment_project.png";
 import hero from "../assets/hero-1.jpg";
 import sarah from "../assets/sarah.jpeg";
 import jean from "../assets/Jean.jpg";
+import logo2 from "../assets/logo_2.png";
+import NavBar from "./NavBar";
+import { ArrowRight } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const icons = {
   ChevronRight: () => (
     <svg
       className="w-4 h-4 ml-1"
       fill="none"
-      stroke="#FDF5E6"
+      stroke="#37474F"
       viewBox="0 0 24 24"
     >
       <path
@@ -23,7 +26,7 @@ const icons = {
     </svg>
   ),
   Heart: () => (
-    <svg className="w-16 h-16" fill="none" stroke="#FDF5E6" viewBox="0 0 24 24">
+    <svg className="w-16 h-16" fill="none" stroke="#37474F" viewBox="0 0 24 24">
       <path
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -33,7 +36,7 @@ const icons = {
     </svg>
   ),
   Users: () => (
-    <svg className="w-16 h-16" fill="none" stroke="#FDF5E6" viewBox="0 0 24 24">
+    <svg className="w-16 h-16" fill="none" stroke="#37474F" viewBox="0 0 24 24">
       <path
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -43,7 +46,7 @@ const icons = {
     </svg>
   ),
   BookOpen: () => (
-    <svg className="w-16 h-16" fill="none" stroke="#FDF5E6" viewBox="0 0 24 24">
+    <svg className="w-16 h-16" fill="none" stroke="#37474F" viewBox="0 0 24 24">
       <path
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -53,7 +56,7 @@ const icons = {
     </svg>
   ),
   Mail: () => (
-    <svg className="w-6 h-6" fill="none" stroke="#37474F" viewBox="0 0 24 24">
+    <svg className="w-6 h-6" fill="none" stroke="#FDF5E6" viewBox="0 0 24 24">
       <path
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -147,75 +150,12 @@ const activities = [
   },
 ];
 
-const Foundation = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [, setCurrentSlide] = useState(0);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentSlide(prev => (prev + 1) % 3);
-    }, 5000);
-    return () => clearInterval(timer);
-  }, []);
-
+const LandingPage = () => {
+  const navigate = useNavigate();
   return (
     <div className="min-h-screen bg-background">
       {/* Navbar */}
-      <nav
-        className={`fixed w-full z-50 transition-all duration-300 ${
-          isScrolled ? "bg-background shadow-md" : "bg-transparent"
-        }`}
-      >
-        <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-          <div className="text-2xl font-bold text-primary">B.F.T.F</div>
-          <div className="hidden md:flex items-center space-x-6">
-            <a
-              href="#"
-              className={`${
-                isScrolled ? "text-text" : "text-background"
-              } hover:text-primary font-semibold`}
-            >
-              About
-            </a>
-            <a
-              href="#"
-              className={`${
-                isScrolled ? "text-text" : "text-background"
-              } hover:text-primary font-semibold`}
-            >
-              Activities
-            </a>
-            <a
-              href="#"
-              className={`${
-                isScrolled ? "text-text" : "text-background"
-              } hover:text-primary font-semibold`}
-            >
-              Get Involved
-            </a>
-            <a
-              href="#"
-              className={`${
-                isScrolled ? "text-text" : "text-background"
-              } hover:text-primary font-semibold`}
-            >
-              Contact
-            </a>
-            <button className="bg-secondary font-semibold text-background px-6 py-2 rounded-full hover:bg-[#FF5722] transition-colors">
-              Donate
-            </button>
-          </div>
-        </div>
-      </nav>
-
+      <NavBar />
       {/* Hero Section */}
       <section className="relative h-screen">
         <div className="absolute inset-0 bg-text/70 z-10"></div>
@@ -235,7 +175,10 @@ const Foundation = () => {
               Join us in creating lasting positive impact through education,
               health, and environmental initiatives.
             </p>
-            <button className="bg-secondary text-background px-8 py-3 rounded-full text-lg hover:bg-[#FF5722] transition-colors">
+            <button
+              onClick={() => navigate("/")}
+              className="bg-secondary text-background px-8 py-3 rounded-full text-lg hover:bg-[#FF5722] transition-colors"
+            >
               Donate Now
             </button>
           </div>
@@ -243,7 +186,7 @@ const Foundation = () => {
       </section>
 
       {/* Activities Section */}
-      <section className="py-20 bg-backtext-background">
+      <section id="activities" className="py-20 bg-backtext-background">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-text text-center mb-12">
             Our Activities
@@ -271,6 +214,12 @@ const Foundation = () => {
               </div>
             ))}
           </div>
+          <button
+            onClick={() => navigate("/activities-posts")}
+            className="bg-secondary p-4 rounded-full flex mx-auto mt-16 text-background font-semibold"
+          >
+            See All Activities <ArrowRight />
+          </button>
         </div>
       </section>
 
@@ -287,7 +236,10 @@ const Foundation = () => {
               <p className="text-gray-600 mb-4">
                 Support our mission with a one-time or recurring donation
               </p>
-              <button className="bg-secondary text-background px-6 py-2 rounded-full hover:bg-[#FF5722] transition-colors">
+              <button
+                onClick={() => navigate("/")}
+                className="bg-secondary text-background px-6 py-2 rounded-full hover:bg-[#FF5722] transition-colors"
+              >
                 Donate Now
               </button>
             </div>
@@ -406,7 +358,7 @@ const Foundation = () => {
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-4 gap-8">
             <div>
-              <h3 className="text-xl font-bold mb-4">About B.F.T.F</h3>
+              <img src={logo2} alt="" className="w-28" />
               <p className="text-gray-300">
                 Empowering communities through sustainable development,
                 education, and environmental conservation.
@@ -485,4 +437,4 @@ const Foundation = () => {
   );
 };
 
-export default Foundation;
+export default LandingPage;

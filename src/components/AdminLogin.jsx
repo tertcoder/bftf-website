@@ -25,7 +25,7 @@ const AdminLogin = ({ setIsAuthenticated }) => {
         formData.password === "admin"
       ) {
         setIsAuthenticated(true);
-        navigate("admin/activities");
+        navigate("/admin/activities");
       } else {
         setError("Invalid email or password");
       }

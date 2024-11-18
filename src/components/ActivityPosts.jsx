@@ -35,7 +35,7 @@ const ActivityPosts = () => {
   ];
 
   // Calculate pagination
-  const totalPages = activitiesData?.totalPages || 1;
+  const totalPages = 6;
 
   const renderContent = () => {
     if (isLoading) {
@@ -56,7 +56,7 @@ const ActivityPosts = () => {
       );
     }
 
-    if (!activitiesData?.activities?.length) {
+    if (!activitiesData?.data?.length) {
       return (
         <div className="min-h-[400px] flex flex-col items-center justify-center">
           <Calendar className="w-16 h-16 text-gray-400 mb-4" />
@@ -74,20 +74,20 @@ const ActivityPosts = () => {
 
     return (
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {activitiesData.activities.map(activity => (
+        {activitiesData.data.map(activity => (
           <div
             key={activity.id}
             className="bg-white rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-1 transition-transform"
           >
             <img
-              src={activity.imageUrl}
+              src={activity.image_url}
               alt={activity.title}
               className="w-full h-48 object-cover"
             />
             <div className="p-6">
               <div className="flex items-center gap-2 text-sm text-gray-600 mb-2">
                 <Calendar size={16} />
-                {format(new Date(activity.createdAt), "MMM dd, yyyy")}
+                {format(new Date(activity.created_at), "MMM dd, yyyy")}
                 <Tag size={16} className="ml-2" />
                 {activity.category}
               </div>
@@ -158,7 +158,7 @@ const ActivityPosts = () => {
         {renderContent()}
 
         {/* Pagination */}
-        {totalPages > 1 && (
+        {/* {totalPages > 1 && (
           <div className="flex justify-center items-center gap-4 mt-8">
             <button
               onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
@@ -180,7 +180,7 @@ const ActivityPosts = () => {
               <ChevronRight size={20} />
             </button>
           </div>
-        )}
+        )} */}
       </div>
 
       {/* Footer */}

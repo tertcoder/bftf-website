@@ -2,40 +2,42 @@ import { useState } from "react";
 import { Plus, Edit2, Trash2, Search, Upload } from "lucide-react";
 import { format } from "date-fns";
 import logo from "../assets/logo_2.png";
+import {
+  useActivities,
+  useCreateActivity,
+  useUpdateActivity,
+  useDeleteActivity,
+} from "../features/activities/queries";
 
 const AdminActivities = () => {
-  const [activities, setActivities] = useState([
-    {
-      id: 1,
-      title: "Youth Education Workshop",
-      category: "education",
-      date: "2024-03-15",
-      status: "published",
-      image: "/api/placeholder/400/300",
-    },
-    // Add more sample activities...
-  ]);
-
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentActivity, setCurrentActivity] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
   const [previewImage, setPreviewImage] = useState(null);
+  const [selectedFile, setSelectedFile] = useState(null);
 
-  const handleDelete = id => {
+  // Queries and Mutations
+  const { data: activitiesData, isLoading } = useActivities({ searchTerm });
+  const createActivity = useCreateActivity();
+  const updateActivity = useUpdateActivity();
+  const deleteActivity = useDeleteActivity();
+  console.log(activitiesData);
+  const handleDelete = (id, imageUrl) => {
     if (window.confirm("Are you sure you want to delete this activity?")) {
-      setActivities(activities.filter(activity => activity.id !== id));
+      deleteActivity.mutate({ id, imageUrl });
     }
   };
 
   const handleEdit = activity => {
     setCurrentActivity(activity);
-    setPreviewImage(activity.image);
+    setPreviewImage(activity.image_url);
     setIsModalOpen(true);
   };
 
   const handleImageChange = e => {
     const file = e.target.files[0];
     if (file) {
+      setSelectedFile(file);
       const reader = new FileReader();
       reader.onloadend = () => {
         setPreviewImage(reader.result);
@@ -44,9 +46,49 @@ const AdminActivities = () => {
     }
   };
 
-  const filteredActivities = activities.filter(activity =>
-    activity.title.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  const handleSubmit = async e => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const data = {
+      title: formData.get("title"),
+      category: formData.get("category"),
+      date: formData.get("date"),
+      description: formData.get("description"),
+      status: formData.get("status") || "draft",
+    };
+
+    if (currentActivity) {
+      updateActivity.mutate(
+        {
+          id: currentActivity.id,
+          data,
+          imageFile: selectedFile,
+        },
+        {
+          onSuccess: () => {
+            setIsModalOpen(false);
+            setCurrentActivity(null);
+            setSelectedFile(null);
+            setPreviewImage(null);
+          },
+        }
+      );
+    } else {
+      createActivity.mutate(
+        {
+          data,
+          imageFile: selectedFile,
+        },
+        {
+          onSuccess: () => {
+            setIsModalOpen(false);
+            setSelectedFile(null);
+            setPreviewImage(null);
+          },
+        }
+      );
+    }
+  };
 
   return (
     <div className="min-h-screen bg-background">
@@ -79,6 +121,7 @@ const AdminActivities = () => {
             onClick={() => {
               setCurrentActivity(null);
               setPreviewImage(null);
+              setSelectedFile(null);
               setIsModalOpen(true);
             }}
             className="bg-primary text-background px-4 py-2 rounded-lg flex items-center gap-2 hover:bg-[#388E3C] transition-colors"
@@ -111,59 +154,69 @@ const AdminActivities = () => {
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-200">
-              {filteredActivities.map(activity => (
-                <tr key={activity.id}>
-                  <td className="px-6 py-4 whitespace-nowrap">
-                    <div className="flex items-center">
-                      <img
-                        src={activity.image || "/api/placeholder/40/40"}
-                        alt={activity.title}
-                        className="h-10 w-10 rounded-lg object-cover mr-3"
-                      />
-                      <div className="text-sm font-medium text-text">
-                        {activity.title}
-                      </div>
-                    </div>
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
-                    <div className="text-sm text-gray-500">
-                      {activity.category}
-                    </div>
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
-                    <div className="text-sm text-gray-500">
-                      {format(new Date(activity.date), "MMM dd, yyyy")}
-                    </div>
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
-                    <span
-                      className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
-                        activity.status === "published"
-                          ? "bg-green-100 text-green-800"
-                          : "bg-yellow-100 text-yellow-800"
-                      }`}
-                    >
-                      {activity.status}
-                    </span>
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                    <div className="flex gap-2">
-                      <button
-                        onClick={() => handleEdit(activity)}
-                        className="text-primary hover:text-[#388E3C]"
-                      >
-                        <Edit2 size={20} />
-                      </button>
-                      <button
-                        onClick={() => handleDelete(activity.id)}
-                        className="text-red-600 hover:text-red-900"
-                      >
-                        <Trash2 size={20} />
-                      </button>
-                    </div>
+              {isLoading ? (
+                <tr>
+                  <td colSpan="5" className="px-6 py-4 text-center">
+                    Loading...
                   </td>
                 </tr>
-              ))}
+              ) : (
+                activitiesData?.data.map(activity => (
+                  <tr key={activity.id}>
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      <div className="flex items-center">
+                        <img
+                          src={activity.image_url || ""}
+                          alt={activity.title}
+                          className="h-10 w-10 rounded-lg object-cover mr-3"
+                        />
+                        <div className="text-sm font-medium text-text">
+                          {activity.title}
+                        </div>
+                      </div>
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      <div className="text-sm text-gray-500">
+                        {activity.category}
+                      </div>
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      <div className="text-sm text-gray-500">
+                        {format(new Date(activity.date), "MMM dd, yyyy")}
+                      </div>
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      <span
+                        className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
+                          activity.status === "published"
+                            ? "bg-green-100 text-green-800"
+                            : "bg-yellow-100 text-yellow-800"
+                        }`}
+                      >
+                        {activity.status}
+                      </span>
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                      <div className="flex gap-2">
+                        <button
+                          onClick={() => handleEdit(activity)}
+                          className="text-primary hover:text-[#388E3C]"
+                        >
+                          <Edit2 size={20} />
+                        </button>
+                        <button
+                          onClick={() =>
+                            handleDelete(activity.id, activity.image_url)
+                          }
+                          className="text-red-600 hover:text-red-900"
+                        >
+                          <Trash2 size={20} />
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                ))
+              )}
             </tbody>
           </table>
         </div>
@@ -176,15 +229,17 @@ const AdminActivities = () => {
             <h2 className="text-2xl font-bold mb-6">
               {currentActivity ? "Edit Activity" : "New Activity"}
             </h2>
-            <form className="space-y-4">
+            <form className="space-y-4" onSubmit={handleSubmit}>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Title
                 </label>
                 <input
+                  name="title"
                   type="text"
                   className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:border-primary"
                   defaultValue={currentActivity?.title}
+                  required
                 />
               </div>
               <div>
@@ -192,8 +247,10 @@ const AdminActivities = () => {
                   Category
                 </label>
                 <select
+                  name="category"
                   className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:border-primary"
                   defaultValue={currentActivity?.category}
+                  required
                 >
                   <option value="education">Education</option>
                   <option value="health">Health</option>
@@ -205,19 +262,36 @@ const AdminActivities = () => {
                   Date
                 </label>
                 <input
+                  name="date"
                   type="date"
                   className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:border-primary"
                   defaultValue={currentActivity?.date}
+                  required
                 />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Status
+                </label>
+                <select
+                  name="status"
+                  className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:border-primary"
+                  defaultValue={currentActivity?.status || "draft"}
+                >
+                  <option value="draft">Draft</option>
+                  <option value="published">Published</option>
+                </select>
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Description
                 </label>
                 <textarea
+                  name="description"
                   className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:border-primary"
                   rows="4"
                   defaultValue={currentActivity?.description}
+                  required
                 ></textarea>
               </div>
               <div>
@@ -240,7 +314,7 @@ const AdminActivities = () => {
                     <input
                       type="file"
                       className="hidden"
-                      accept="image/*"
+                      accept="image_url/*"
                       onChange={handleImageChange}
                     />
                   </label>
@@ -257,8 +331,15 @@ const AdminActivities = () => {
                 <button
                   type="submit"
                   className="px-4 py-2 bg-primary text-background rounded-lg hover:bg-[#388E3C] transition-colors"
+                  disabled={
+                    createActivity.isLoading || updateActivity.isLoading
+                  }
                 >
-                  {currentActivity ? "Update" : "Create"}
+                  {createActivity.isLoading || updateActivity.isLoading
+                    ? "Saving..."
+                    : currentActivity
+                    ? "Update"
+                    : "Create"}
                 </button>
               </div>
             </form>

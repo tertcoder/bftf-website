@@ -8,6 +8,7 @@ import logo2 from "../assets/logo_2.png";
 import NavBar from "./NavBar";
 import { ArrowRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import ActivitiesSection from "../sections/ActivitiesSection";
 
 const icons = {
   ChevronRight: () => (
@@ -129,28 +130,7 @@ const testimonials = [
   },
 ];
 
-const activities = [
-  {
-    title: "Youth Education",
-    description:
-      "Empowering young minds through quality education and mentorship programs.",
-    image: youth,
-  },
-  {
-    title: "Community Health",
-    description:
-      "Providing accessible healthcare services and wellness education to communities.",
-    image: community,
-  },
-  {
-    title: "Environmental Projects",
-    description:
-      "Creating sustainable solutions for a greener, cleaner future.",
-    image: environment_project,
-  },
-];
-
-const LandingPage = () => {
+function LandingPage() {
   const navigate = useNavigate();
   return (
     <div className="min-h-screen bg-background">
@@ -186,43 +166,8 @@ const LandingPage = () => {
       </section>
 
       {/* Activities Section */}
-      <section id="activities" className="py-20 bg-backtext-background">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-text text-center mb-12">
-            Our Activities
-          </h2>
-          <div className="grid md:grid-cols-3 gap-8">
-            {activities.map((activity, index) => (
-              <div
-                key={index}
-                className="bg-backtext-background rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-1 transition-transform"
-              >
-                <img
-                  src={activity.image}
-                  alt={activity.title}
-                  className="w-full h-48 object-cover"
-                />
-                <div className="p-6">
-                  <h3 className="text-xl font-bold text-text mb-2">
-                    {activity.title}
-                  </h3>
-                  <p className="text-gray-600 mb-4">{activity.description}</p>
-                  <button className="text-primary hover:text-[#388E3C] font-medium flex items-center">
-                    Read More {icons.ChevronRight}
-                  </button>
-                </div>
-              </div>
-            ))}
-          </div>
-          <button
-            onClick={() => navigate("/activities-posts")}
-            className="bg-secondary p-4 rounded-full flex mx-auto mt-16 text-background font-semibold"
-          >
-            See All Activities <ArrowRight />
-          </button>
-        </div>
-      </section>
 
+      <ActivitiesSection />
       {/* Get Involved Section */}
       <section className="py-20 bg-primary/10">
         <div className="container mx-auto px-4">
@@ -231,7 +176,7 @@ const LandingPage = () => {
           </h2>
           <div className="grid md:grid-cols-3 gap-8">
             <div className="text-center">
-              {icons.Heart}
+              <icons.Heart />
               <h3 className="text-xl font-bold text-text mb-2">Donate</h3>
               <p className="text-gray-600 mb-4">
                 Support our mission with a one-time or recurring donation
@@ -244,7 +189,7 @@ const LandingPage = () => {
               </button>
             </div>
             <div className="text-center">
-              {icons.Users}
+              <icons.Users />
               <h3 className="text-xl font-bold text-text mb-2">Volunteer</h3>
               <p className="text-gray-600 mb-4">
                 Join our community of dedicated volunteers
@@ -254,7 +199,7 @@ const LandingPage = () => {
               </button>
             </div>
             <div className="text-center">
-              {icons.BookOpen}
+              <icons.BookOpen />
               <h3 className="text-xl font-bold text-text mb-2">Partner</h3>
               <p className="text-gray-600 mb-4">
                 Collaborate with us to create bigger impact
@@ -302,23 +247,23 @@ const LandingPage = () => {
               <h2 className="text-3xl font-bold mb-8">Get in Touch</h2>
               <div className="space-y-4">
                 <div className="flex items-center">
-                  {icons.Mail}
+                  <icons.Mail />
                   <span>contact@bftf.org</span>
                 </div>
                 <div className="flex items-center">
-                  {icons.Phone}
+                  <icons.Phone />
                   <span>+257 65 849 761</span>
                 </div>
                 <div className="flex items-center">
-                  {icons.MapPin}
+                  <icons.MapPin />
                   <span>Bujumbura, Burundi</span>
                 </div>
               </div>
               <div className="flex space-x-4 mt-8">
-                {icons.Facebook}
-                {icons.Twitter}
-                {icons.Instagram}
-                {icons.LinkedIn}
+                <icons.Facebook />
+                <icons.Twitter />
+                <icons.Instagram />
+                <icons.Linkedin />
               </div>
             </div>
             <div>
@@ -435,6 +380,27 @@ const LandingPage = () => {
       </footer>
     </div>
   );
-};
+}
 
 export default LandingPage;
+
+// const activities = [
+//   {
+//     title: "Youth Education",
+//     description:
+//       "Empowering young minds through quality education and mentorship programs.",
+//     image: youth,
+//   },
+//   {
+//     title: "Community Health",
+//     description:
+//       "Providing accessible healthcare services and wellness education to communities.",
+//     image: community,
+//   },
+//   {
+//     title: "Environmental Projects",
+//     description:
+//       "Creating sustainable solutions for a greener, cleaner future.",
+//     image: environment_project,
+//   },
+// ];

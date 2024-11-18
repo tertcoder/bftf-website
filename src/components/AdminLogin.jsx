@@ -1,36 +1,29 @@
 import { useState } from "react";
-import PropTypes from "prop-types";
 import { LogIn, AlertCircle } from "lucide-react";
+import { useNavigate, Navigate } from "react-router-dom";
+import { useLogin, useUser } from "../features/auth/useAuth";
 import logo from "../assets/logo_2.png";
-import { useNavigate } from "react-router-dom";
 
-const AdminLogin = ({ setIsAuthenticated }) => {
+const AdminLogin = () => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
-  const [error, setError] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
+  const { user, isLoading: userLoading } = useUser();
+  const {
+    mutate: login,
+    isLoading: loginLoading,
+    error,
+  } = useLogin({
+    onSuccess: () => {
+      navigate("/admin/activities");
+    },
+  });
 
   const handleSubmit = async e => {
     e.preventDefault();
-    setIsLoading(true);
-    setError("");
-
-    // Simulate API call
-    setTimeout(() => {
-      if (
-        formData.email === "admin@admin.com" &&
-        formData.password === "admin"
-      ) {
-        setIsAuthenticated(true);
-        navigate("/admin/activities");
-      } else {
-        setError("Invalid email or password");
-      }
-      setIsLoading(false);
-    }, 1000);
+    login(formData);
   };
 
   const handleChange = e => {
@@ -39,6 +32,11 @@ const AdminLogin = ({ setIsAuthenticated }) => {
       [e.target.name]: e.target.value,
     });
   };
+
+  // Redirect authenticated users to /admin/activities
+  if (user && !userLoading) {
+    return <Navigate to="/admin/activities" replace />;
+  }
 
   return (
     <div className="min-h-screen bg-background flex flex-col justify-center">
@@ -52,7 +50,7 @@ const AdminLogin = ({ setIsAuthenticated }) => {
             {error && (
               <div className="bg-red-50 border border-red-200 rounded-lg p-4 flex items-center gap-3 text-red-800">
                 <AlertCircle className="w-5 h-5" />
-                <span className="text-sm">{error}</span>
+                <span className="text-sm">{error.message}</span>
               </div>
             )}
 
@@ -121,7 +119,7 @@ const AdminLogin = ({ setIsAuthenticated }) => {
                   href="#"
                   className="font-medium text-secondary hover:text-[#388E3C]"
                 >
-                  Forgot your password?
+                  Forgot your password?jjj
                 </a>
               </div>
             </div>
@@ -129,10 +127,10 @@ const AdminLogin = ({ setIsAuthenticated }) => {
             <div>
               <button
                 type="submit"
-                disabled={isLoading}
+                disabled={loginLoading}
                 className="w-full flex justify-center items-center gap-2 rounded-lg bg-secondary px-4 py-2 text-white hover:bg-[#388E3C] focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
               >
-                {isLoading ? (
+                {loginLoading ? (
                   <>
                     <svg
                       className="animate-spin h-5 w-5 text-white"
@@ -164,30 +162,10 @@ const AdminLogin = ({ setIsAuthenticated }) => {
               </button>
             </div>
           </form>
-
-          {/* <div className="mt-6">
-            <div className="relative">
-              <div className="absolute inset-0 flex items-center">
-                <div className="w-full border-t border-gray-300" />
-              </div>
-              <div className="relative flex justify-center text-sm">
-                <span className="bg-white px-2 text-gray-500">Need help?</span>
-              </div>
-            </div>
-
-            <div className="mt-6 text-center text-sm">
-              <a href="#" className="text-gray-600 hover:text-gray-900">
-                Contact system administrator
-              </a>
-            </div>
-          </div> */}
         </div>
       </div>
     </div>
   );
-};
-AdminLogin.propTypes = {
-  setIsAuthenticated: PropTypes.func.isRequired,
 };
 
 export default AdminLogin;

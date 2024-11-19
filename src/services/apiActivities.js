@@ -55,7 +55,7 @@ export const apiActivities = {
       const { error: uploadError, data } = await supabase.storage
         .from("activity-images")
         .upload(filePath, imageFile);
-        activitiesData?. ||
+
       if (uploadError) throw uploadError;
 
       // Get public URL for the uploaded image

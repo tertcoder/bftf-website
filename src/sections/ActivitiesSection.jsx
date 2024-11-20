@@ -38,7 +38,7 @@ function ActivitiesSection() {
   // Show loading state
   if (isLoading) {
     return (
-      <section className="py-20 bg-backtext-background">
+      <section id="activities" className="py-20 bg-backtext-background">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-text text-center mb-12">
             Our Activities
@@ -64,15 +64,15 @@ function ActivitiesSection() {
   }
 
   // Show error state
-  if (error) {
-    return (
-      <section className="py-20 bg-backtext-background">
-        <div className="container mx-auto px-4 text-center text-red-600">
-          Error loading activities
-        </div>
-      </section>
-    );
-  }
+  // if (error) {
+  //   return (
+  //     <section  className="py-20 bg-backtext-background">
+  //       <div className="container mx-auto px-4 text-center text-red-600">
+  //         Error loading activities
+  //       </div>
+  //     </section>
+  //   );
+  // }
 
   console.log(activitiesData);
   // Get only the first 3 activities
@@ -82,9 +82,9 @@ function ActivitiesSection() {
       .slice(0, 3) || [];
 
   // Show empty state
-  if (!latestActivities.length) {
+  if (!latestActivities.length || error) {
     return (
-      <section className="py-20 bg-backtext-background">
+      <section id="activities" className="py-20 bg-backtext-background">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-text text-center mb-12">
             Our Activities

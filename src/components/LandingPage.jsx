@@ -1,7 +1,9 @@
 import youth from "../assets/youth.png";
 import community from "../assets/community_hearth.jpg";
 import environment_project from "../assets/environment_project.png";
-import hero from "../assets/hero-1.jpg";
+import hero1 from "../assets/hero-1.jpg";
+import hero2 from "../assets/hero-2.png";
+import hero3 from "../assets/hero-3.png";
 import sarah from "../assets/sarah.jpeg";
 import jean from "../assets/Jean.jpg";
 import logo2 from "../assets/logo_2.png";
@@ -9,6 +11,7 @@ import NavBar from "./NavBar";
 import { ArrowRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import ActivitiesSection from "../sections/ActivitiesSection";
+import { useState, useEffect } from 'react';
 
 const icons = {
   ChevronRight: () => (
@@ -130,8 +133,23 @@ const testimonials = [
   },
 ];
 
+const auto_sliding = [hero1,hero2,hero3];
+
 function LandingPage() {
   const navigate = useNavigate();
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prevIndex) => 
+        prevIndex === auto_sliding.length - 1 ? 0 : prevIndex + 1
+      );
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+
   return (
     <div className="min-h-screen bg-background">
       {/* Navbar */}
@@ -140,11 +158,16 @@ function LandingPage() {
       <section className="relative h-screen">
         <div className="absolute inset-0 bg-text/70 z-10"></div>
         <div className="relative h-full overflow-hidden">
-          <img
-            src={hero}
-            alt="Hero"
-            className="absolute w-full h-full object-cover transition-opacity duration-1000"
-          />
+          {auto_sliding.map((image, index) => (
+            <img
+              key={index}
+              src={image}
+              alt={`Hero ${index + 1}`}
+              className={`absolute w-full h-full object-cover transition-opacity duration-1000 ${
+                index === currentIndex ? 'opacity-100' : 'opacity-0'
+              }`}
+            />
+          ))}
         </div>
         <div className="absolute inset-0 z-20 flex items-center justify-center text-center">
           <div className="container mx-auto px-4">
@@ -156,26 +179,87 @@ function LandingPage() {
               health, and environmental initiatives.
             </p>
             <button
-              onClick={() => navigate("/")}
-              className="bg-secondary text-background px-8 py-3 rounded-full text-lg hover:bg-[#FF5722] transition-colors"
+              onClick={() => navigate("/donate")}
+              className="bg-secondary font-semibold text-background px-8 py-3 rounded-full text-lg hover:bg-[#FF5722] transition-colors"
             >
               Donate Now
             </button>
           </div>
         </div>
+        
+        {/* Optional: Add navigation dots */}
+        <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 z-30 flex space-x-2">
+          {auto_sliding.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => setCurrentIndex(index)}
+              className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                index === currentIndex 
+                  ? 'bg-background w-4' 
+                  : 'bg-background/60 hover:bg-background/80'
+              }`}
+              aria-label={`Go to slide ${index + 1}`}
+            />
+          ))}
+        </div>
       </section>
+      {/* Mission Section - New Addition */}
+      <section id="mission" className="py-20 bg-background">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto text-center">
+            <h2 className="text-3xl font-bold text-text mb-8">Our Mission</h2>
+            <div className="bg-primary/5 rounded-2xl p-8 shadow-lg">
+              <p className="text-xl text-text/90 leading-relaxed mb-8">
+                At Bloom for Tomorrow Foundation, our mission is to cultivate sustainable development 
+                and empower communities through three core pillars: education, health, and environmental 
+                conservation. We believe in creating lasting positive change that spans generations.
+              </p>
+              <div className="grid md:grid-cols-3 gap-6 text-left">
+                <div className="p-4 bg-background rounded-lg shadow-sm">
+                  <h3 className="text-lg font-semibold text-primary mb-2">Education First</h3>
+                  <p className="text-text/80">
+                    Providing quality education and mentorship to youth, creating pathways to brighter futures.
+                  </p>
+                </div>
+                <div className="p-4 bg-background rounded-lg shadow-sm">
+                  <h3 className="text-lg font-semibold text-primary mb-2">Community Wellness</h3>
+                  <p className="text-text/80">
+                    Ensuring accessible healthcare and promoting community well-being through comprehensive programs.
+                  </p>
+                </div>
+                <div className="p-4 bg-background rounded-lg shadow-sm">
+                  <h3 className="text-lg font-semibold text-primary mb-2">Environmental Stewardship</h3>
+                  <p className="text-text/80">
+                    Leading initiatives for environmental conservation and sustainable practices.
+                  </p>
+                </div>
+              </div>
+              {/* <div className="mt-8 flex justify-center">
+                <button 
+                  onClick={() => navigate("/about")}
+                  className="flex items-center text-primary hover:text-secondary transition-colors"
+                >
+                  Learn More About Our Work
+                  <ArrowRight className="ml-2 w-5 h-5" />
+                </button>
+              </div> */}
+            </div>
+          </div>
+        </div>
+      </section>
+
 
       {/* Activities Section */}
 
       <ActivitiesSection />
       {/* Get Involved Section */}
-      <section className="py-20 bg-primary/10">
+      <section id="getInvolved" className="py-20 bg-primary/10">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-text text-center mb-12">
             How to Get Involved
           </h2>
           <div className="grid md:grid-cols-3 gap-8">
-            <div className="text-center">
+            <div className="text-center flex flex-col items-center">
               <icons.Heart />
               <h3 className="text-xl font-bold text-text mb-2">Donate</h3>
               <p className="text-gray-600 mb-4">
@@ -188,7 +272,7 @@ function LandingPage() {
                 Donate Now
               </button>
             </div>
-            <div className="text-center">
+            <div className="text-center flex flex-col items-center">
               <icons.Users />
               <h3 className="text-xl font-bold text-text mb-2">Volunteer</h3>
               <p className="text-gray-600 mb-4">
@@ -198,7 +282,7 @@ function LandingPage() {
                 Join Us
               </button>
             </div>
-            <div className="text-center">
+            <div className="text-center flex flex-col items-center">
               <icons.BookOpen />
               <h3 className="text-xl font-bold text-text mb-2">Partner</h3>
               <p className="text-gray-600 mb-4">
@@ -240,7 +324,7 @@ function LandingPage() {
       </section>
 
       {/* Contact Section */}
-      <section className="py-20 bg-text text-background">
+      <section id="contact" className="py-20 bg-text text-background">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-12">
             <div>
@@ -271,23 +355,23 @@ function LandingPage() {
                 <input
                   type="text"
                   placeholder="Your Name"
-                  className="w-full px-4 py-2 rounded-lg bg-backtext-background/10 border border-backtext-background/20 focus:outline-none focus:border-primary"
+                  className="w-full px-4 py-2 rounded-lg bg-background/10 border border-background/20 focus:outline-none focus:border-primary"
                 />
                 <input
                   type="email"
                   placeholder="Your Email"
-                  className="w-full px-4 py-2 rounded-lg bg-backtext-background/10 border border-backtext-background/20 focus:outline-none focus:border-primary"
+                  className="w-full px-4 py-2 rounded-lg bg-background/10 border border-background/20 focus:outline-none focus:border-primary"
                 />
-                <select className="w-full px-4 py-2 rounded-lg bg-backtext-background/10 border border-backtext-background/20 focus:outline-none focus:border-primary">
-                  <option value="">Select Subject</option>
-                  <option value="partnership">Partnership</option>
-                  <option value="volunteering">Volunteering</option>
-                  <option value="donation">Donation Support</option>
+                <select className="w-full px-4 py-2 rounded-lg bg-background/10 border border-background/20 focus:outline-none focus:border-primary">
+                  <option value="" className="text-text">Select Subject</option>
+                  <option value="partnership" className="text-text">Partnership</option>
+                  <option value="volunteering" className="text-text">Volunteering</option>
+                  <option value="donation" className="text-text">Donation Support</option>
                 </select>
                 <textarea
                   placeholder="Your Message"
                   rows="4"
-                  className="w-full px-4 py-2 rounded-lg bg-backtext-background/10 border border-backtext-background/20 focus:outline-none focus:border-primary"
+                  className="w-full px-4 py-2 rounded-lg bg-background/10 border border-background/20 focus:outline-none focus:border-primary"
                 ></textarea>
                 <button className="bg-primary text-background px-6 py-2 rounded-full hover:bg-[#388E3C] transition-colors">
                   Send Message
@@ -363,7 +447,7 @@ function LandingPage() {
                 <input
                   type="email"
                   placeholder="Your email"
-                  className="px-4 py-2 rounded-l-lg bg-backtext-background/10 border border-backtext-background/20 focus:outline-none focus:border-primary flex-grow"
+                  className="px-4 py-2 rounded-l-lg bg-background/10 border border-background/20 focus:outline-none focus:border-primary flex-grow"
                 />
                 <button className="bg-primary px-4 py-2 rounded-r-lg hover:bg-[#388E3C] transition-colors">
                   Subscribe

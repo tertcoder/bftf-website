@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import logo from "../assets/logo.png";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function NavBar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -29,30 +29,41 @@ function NavBar() {
       }`}
     >
       <div className="container mx-auto px-4 py-4 flex items-center justify-between">
+        <Link to="/">
         <img
           src={logo}
           alt="Logo - Bloom for Tomorrow Foundation"
           className="w-28"
-        />
+          />
+          </Link>
         <div className="hidden md:flex items-center space-x-6">
           <a
-            href="#"
+            href="/#"
             className={`${
               isScrolled ? "text-text" : "text-background"
             } hover:text-primary font-semibold`}
           >
-            About
+            Home
           </a>
           <a
-            href="#activities"
+            href="/#mission"
+            className={`${
+              isScrolled ? "text-text" : "text-background"
+            } hover:text-primary font-semibold`}
+          >
+            Mission
+          </a>
+          <a
+            href="/#activities"
             className={`${
               isScrolled ? "text-text" : "text-background"
             } hover:text-primary font-semibold`}
           >
             Activities
           </a>
+          
           <a
-            href="#getInvolved"
+            href="/#getInvolved"
             className={`${
               isScrolled ? "text-text" : "text-background"
             } hover:text-primary font-semibold`}
@@ -60,7 +71,7 @@ function NavBar() {
             Get Involved
           </a>
           <a
-            href="#contact"
+            href="/#contact"
             className={`${
               isScrolled ? "text-text" : "text-background"
             } hover:text-primary font-semibold`}
@@ -68,7 +79,7 @@ function NavBar() {
             Contact
           </a>
           <button
-            onClick={() => navigate("/")}
+            onClick={() => navigate("/donate")}
             className="bg-secondary font-semibold text-background px-6 py-2 rounded-full hover:bg-[#FF5722] transition-colors"
           >
             Donate

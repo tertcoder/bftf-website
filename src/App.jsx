@@ -7,6 +7,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Toaster } from "react-hot-toast";
+import DonationDetails from "./components/DonationDetails";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -23,7 +24,7 @@ function App() {
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/activities-posts" element={<ActivityPosts />} />
-          {/* <Route path="/donate" element={<DonatePage />} /> */}
+          <Route path="/donate" element={<DonationDetails />} />
           <Route path="/login-admin" element={<AdminLogin />} />
           <Route
             path="/admin/activities"

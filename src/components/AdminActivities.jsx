@@ -224,8 +224,8 @@ const AdminActivities = () => {
 
       {/* Activity Form Modal */}
       {isModalOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4">
-          <div className="bg-white rounded-lg p-8 max-w-2xl w-full">
+        <div className="fixed inset-0 py-56 bg-black bg-opacity-50 flex items-center justify-center p-4">
+          <div className="bg-white h-screen overflow-y-auto my-12 rounded-lg p-8 max-w-2xl w-full">
             <h2 className="text-2xl font-bold mb-6">
               {currentActivity ? "Edit Activity" : "New Activity"}
             </h2>

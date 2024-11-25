@@ -97,12 +97,12 @@ const ActivityPosts = () => {
               <p className="text-gray-600 mb-4 line-clamp-2">
                 {activity.description}
               </p>
-              <button
+              {/* <button
                 // onClick={() => navigate(`/activities/${activity.id}`)}
                 className="text-primary hover:text-secondary font-medium flex items-center gap-2"
               >
                 Read More <ChevronRight size={16} />
-              </button>
+              </button> */}
             </div>
           </div>
         ))}

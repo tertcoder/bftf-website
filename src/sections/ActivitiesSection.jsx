@@ -138,12 +138,12 @@ function ActivitiesSection() {
                   {activity.title}
                 </h3>
                 <p className="text-gray-600 mb-4">{activity.description}</p>
-                <button
+                {/* <button
                   // onClick={() => navigate(`/activities/${activity.id}`)}
                   className="text-primary hover:text-[#388E3C] font-medium flex items-center"
                 >
                   Read More <icons.ChevronRight />
-                </button>
+                </button> */}
               </div>
             </div>
           ))}

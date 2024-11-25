@@ -1,9 +1,11 @@
 import youth from "../assets/youth.png";
 import community from "../assets/community_hearth.jpg";
 import environment_project from "../assets/environment_project.png";
-import hero1 from "../assets/hero-1.jpg";
-import hero2 from "../assets/hero-2.png";
-import hero3 from "../assets/hero-3.png";
+import hero1 from "../assets/hero-2.png";
+import hero2 from "../assets/hero-3.png";
+import hero3 from "../assets/hero-4.jpeg";
+import hero4 from "../assets/hero-5.jpg";
+import hero5 from "../assets/hero-6.jpg";
 import sarah from "../assets/sarah.jpeg";
 import jean from "../assets/Jean.jpg";
 import logo2 from "../assets/logo_2.png";
@@ -133,7 +135,7 @@ const testimonials = [
   },
 ];
 
-const auto_sliding = [hero1,hero2,hero3];
+const auto_sliding = [hero1,hero2,hero3,hero4,hero5];
 
 function LandingPage() {
   const navigate = useNavigate();
@@ -171,12 +173,11 @@ function LandingPage() {
         </div>
         <div className="absolute inset-0 z-20 flex items-center justify-center text-center">
           <div className="container mx-auto px-4">
-            <h1 className="text-4xl md:text-6xl font-bold text-background mb-6">
-              Empowering Communities, Inspiring Change
+            <h1 className="text-4xl text-center md:text-6xl font-bold text-background mb-6">
+              Helping Kids Shine <br />  Brighter Tomorrow
             </h1>
-            <p className="text-xl text-background mb-8 max-w-2xl mx-auto">
-              Join us in creating lasting positive impact through education,
-              health, and environmental initiatives.
+            <p className="text-xl text-background mb-8 max-w-3xl mx-auto">
+              Join us in supporting children's dreams and building a better future. Together, we can make every child's tomorrow brighter and full of hope. Your support matter!
             </p>
             <button
               onClick={() => navigate("/donate")}
@@ -188,12 +189,12 @@ function LandingPage() {
         </div>
         
         {/* Optional: Add navigation dots */}
-        <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 z-30 flex space-x-2">
+        <div className="absolute bottom-4 left-1/2 transform origin-left -translate-x-1/2 z-30 flex space-x-2">
           {auto_sliding.map((_, index) => (
             <button
               key={index}
               onClick={() => setCurrentIndex(index)}
-              className={`w-2 h-2 rounded-full transition-all duration-300 ${
+              className={`w-2 h-2 rounded-full transition-all duration-1000 ${
                 index === currentIndex 
                   ? 'bg-background w-4' 
                   : 'bg-background/60 hover:bg-background/80'
@@ -209,28 +210,32 @@ function LandingPage() {
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-3xl font-bold text-text mb-8">Our Mission</h2>
             <div className="bg-primary/5 rounded-2xl p-8 shadow-lg">
-              <p className="text-xl text-text/90 leading-relaxed mb-8">
-                At Bloom for Tomorrow Foundation, our mission is to cultivate sustainable development 
-                and empower communities through three core pillars: education, health, and environmental 
-                conservation. We believe in creating lasting positive change that spans generations.
+              <p className="text-lg text-justify text-text/90 leading-relaxed mb-8">
+                At Bloom for Tomorrow Foundation, our mission is to extend a helping hand to children who lack the means to pursue their education,
+                 maintain their health, and access proper nutrition. We are committed to supporting these vulnerable children by providing them 
+                 with the essential resources and assistance they need to overcome barriers and thrive in life.
+                
+              </p>
+              <p className="text-lg text-justify text-text/90 leading-relaxed mb-8">
+                Our goal is to empower every child to break free from the cycle of poverty, ill health, and hunger, and to create a future filled 
+                with opportunities and possibilities. Together, we strive to be a beacon of hope and a catalyst for positive change in the lives of these children, ensuring
+                that they have the chance to build a better tomorrow for themselves and their communities.
               </p>
               <div className="grid md:grid-cols-3 gap-6 text-left">
                 <div className="p-4 bg-background rounded-lg shadow-sm">
-                  <h3 className="text-lg font-semibold text-primary mb-2">Education First</h3>
-                  <p className="text-text/80">
-                    Providing quality education and mentorship to youth, creating pathways to brighter futures.
+                  <h3 className="text-lg font-semibold text-primary mb-2">Education for All</h3>
+                  <p className="text-text/80">Providing access to quality education and essential learning materials to ensure every child can pursue their dreams and build a brighter future.
                   </p>
                 </div>
                 <div className="p-4 bg-background rounded-lg shadow-sm">
-                  <h3 className="text-lg font-semibold text-primary mb-2">Community Wellness</h3>
-                  <p className="text-text/80">
-                    Ensuring accessible healthcare and promoting community well-being through comprehensive programs.
+                  <h3 className="text-lg font-semibold text-primary mb-2">Health & Wellness</h3>
+                  <p className="text-text/80">Promoting the well-being of children by offering healthcare support, vaccinations, and awareness programs to keep them healthy and thriving.
                   </p>
                 </div>
                 <div className="p-4 bg-background rounded-lg shadow-sm">
-                  <h3 className="text-lg font-semibold text-primary mb-2">Environmental Stewardship</h3>
+                  <h3 className="text-lg font-semibold text-primary mb-2">Nourishment & Support</h3>
                   <p className="text-text/80">
-                    Leading initiatives for environmental conservation and sustainable practices.
+                  Delivering nutritious meals and resources to combat hunger and support the growth and development of vulnerable children.
                   </p>
                 </div>
               </div>
@@ -265,12 +270,12 @@ function LandingPage() {
               <p className="text-gray-600 mb-4">
                 Support our mission with a one-time or recurring donation
               </p>
-              <button
+              {/* <button
                 onClick={() => navigate("/")}
                 className="bg-secondary text-background px-6 py-2 rounded-full hover:bg-[#FF5722] transition-colors"
               >
                 Donate Now
-              </button>
+              </button> */}
             </div>
             <div className="text-center flex flex-col items-center">
               <icons.Users />
@@ -278,9 +283,9 @@ function LandingPage() {
               <p className="text-gray-600 mb-4">
                 Join our community of dedicated volunteers
               </p>
-              <button className="bg-primary text-background px-6 py-2 rounded-full hover:bg-[#388E3C] transition-colors">
+              {/* <button className="bg-primary text-background px-6 py-2 rounded-full hover:bg-[#388E3C] transition-colors">
                 Join Us
-              </button>
+              </button> */}
             </div>
             <div className="text-center flex flex-col items-center">
               <icons.BookOpen />
@@ -288,9 +293,9 @@ function LandingPage() {
               <p className="text-gray-600 mb-4">
                 Collaborate with us to create bigger impact
               </p>
-              <button className="bg-primary text-background px-6 py-2 rounded-full hover:bg-[#388E3C] transition-colors">
+              {/* <button className="bg-primary text-background px-6 py-2 rounded-full hover:bg-[#388E3C] transition-colors">
                 Learn More
-              </button>
+              </button> */}
             </div>
           </div>
         </div>
@@ -398,21 +403,21 @@ function LandingPage() {
               <ul className="space-y-2">
                 <li>
                   <a href="#" className="text-gray-300 hover:text-background">
-                    About Us
+                    Home
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="text-gray-300 hover:text-background">
+                  <a href="#activities" className="text-gray-300 hover:text-background">
                     Our Activities
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="text-gray-300 hover:text-background">
+                  <a href="#getInvolved" className="text-gray-300 hover:text-background">
                     Get Involved
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="text-gray-300 hover:text-background">
+                  <a href="#contact" className="text-gray-300 hover:text-background">
                     Contact
                   </a>
                 </li>

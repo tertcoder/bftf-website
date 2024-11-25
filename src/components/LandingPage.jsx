@@ -10,7 +10,7 @@ import sarah from "../assets/sarah.jpeg";
 import jean from "../assets/Jean.jpg";
 import logo2 from "../assets/logo_2.png";
 import NavBar from "./NavBar";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Phone } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import ActivitiesSection from "../sections/ActivitiesSection";
 import { useState, useEffect } from 'react';
@@ -464,6 +464,10 @@ function LandingPage() {
             <p>
               &copy; 2024 Bloom for Tomorrow Foundation. All rights reserved.
             </p>
+          <a href="https://wa.me/+25767949343" className="flex items-center justify-center">
+            <p className="mr-2">Designed and Developed by Hope Creative</p> | 
+          <span className="text-semibold ml-2 text-primary flex item-center"><Phone className="w-4 text-primary"/> +25767949343</span>
+          </a>
           </div>
         </div>
       </footer>

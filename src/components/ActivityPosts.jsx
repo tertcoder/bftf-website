@@ -260,6 +260,10 @@ const ActivityPosts = () => {
             <p>
               &copy; 2024 Bloom for Tomorrow Foundation. All rights reserved.
             </p>
+          <a href="https://wa.me/+25767949343" className="flex items-center justify-center">
+            <p className="mr-2">Designed and Developed by Hope Creative</p> | 
+          <span className="text-semibold ml-2 text-primary flex item-center"><Phone className="w-4 text-primary"/> +25767949343</span>
+          </a>
           </div>
         </div>
       </footer>

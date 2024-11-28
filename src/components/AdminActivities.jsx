@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Plus, Edit2, Trash2, Search, Upload } from "lucide-react";
 import { format } from "date-fns";
-import logo from "../assets/logo_2.png";
 import {
   useActivities,
   useCreateActivity,
@@ -21,7 +20,7 @@ const AdminActivities = () => {
   const createActivity = useCreateActivity();
   const updateActivity = useUpdateActivity();
   const deleteActivity = useDeleteActivity();
-  console.log(activitiesData);
+
   const handleDelete = (id, imageUrl) => {
     if (window.confirm("Are you sure you want to delete this activity?")) {
       deleteActivity.mutate({ id, imageUrl });
@@ -91,17 +90,19 @@ const AdminActivities = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
-      {/* Admin Header */}
-      <div className="bg-text text-background py-8">
-        <div className="container flex flex-col justify-center items-center space-y-8 mx-auto px-4">
-          <img src={logo} alt="Logo" className="w-36" />
-          <h1 className="text-2xl font-bold">Activity Management</h1>
-        </div>
-      </div>
-
+    // <div className="min-h-screen bg-background">
+    //   <Sidebar />
+    //   {/* Admin Header */}
+    //   <div className="bg-text text-background py-8">
+    //     <div className="container flex flex-col justify-center items-center space-y-8 mx-auto px-4">
+    //       <img src={logo} alt="Logo" className="w-36" />
+    //       <h1 className="text-2xl font-bold">Activity Management</h1>
+    //     </div>
+    //   </div>
+    <main className="flex-1 ml-64 p-8">
       {/* Admin Content */}
-      <div className="container mx-auto px-4 py-8">
+      <div className="container mx-auto">
+        <h1 className="text-2xl font-bold mb-8">Testimony Management</h1>
         {/* Action Bar */}
         <div className="flex flex-col md:flex-row gap-4 mb-8">
           <div className="flex-1 relative">
@@ -346,7 +347,8 @@ const AdminActivities = () => {
           </div>
         </div>
       )}
-    </div>
+    </main>
+    // </div>
   );
 };
 

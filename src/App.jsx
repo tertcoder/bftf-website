@@ -1,13 +1,20 @@
 import LandingPage from "./components/LandingPage";
 import ActivityPosts from "./components/ActivityPosts";
 import AdminActivities from "./components/AdminActivities";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Navigate,
+} from "react-router-dom";
 import AdminLogin from "./components/AdminLogin";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Toaster } from "react-hot-toast";
 import DonationDetails from "./components/DonationDetails";
+import DashboardLayout from "./components/DashboardLayout";
+import AdminTestimonies from "./components/TestimoniesManage";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -27,13 +34,20 @@ function App() {
           <Route path="/donate" element={<DonationDetails />} />
           <Route path="/login-admin" element={<AdminLogin />} />
           <Route
-            path="/admin/activities"
+            path="/admin"
             element={
               <ProtectedRoute>
-                <AdminActivities />
+                <DashboardLayout />
               </ProtectedRoute>
             }
-          />
+          >
+            <Route
+              path="/admin"
+              element={<Navigate to={"/admin/activities"} />}
+            />
+            <Route path="/admin/activities" element={<AdminActivities />} />
+            <Route path="/admin/testimonies" element={<AdminTestimonies />} />
+          </Route>
         </Routes>
       </Router>
       <ReactQueryDevtools initialIsOpen={false} />

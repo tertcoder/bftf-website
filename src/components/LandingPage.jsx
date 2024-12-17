@@ -1,6 +1,3 @@
-import youth from "../assets/youth.png";
-import community from "../assets/community_hearth.jpg";
-import environment_project from "../assets/environment_project.png";
 import hero1 from "../assets/hero-2.png";
 import hero2 from "../assets/hero-3.png";
 import hero3 from "../assets/hero-4.jpeg";
@@ -8,12 +5,11 @@ import hero4 from "../assets/hero-5.jpg";
 import hero5 from "../assets/hero-6.jpg";
 import sarah from "../assets/sarah.jpeg";
 import jean from "../assets/Jean.jpg";
-import logo2 from "../assets/logo_2.png";
 import NavBar from "./NavBar";
-import { ArrowRight, Phone } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import ActivitiesSection from "../sections/ActivitiesSection";
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
+import Footer from "./Footer";
 
 const icons = {
   ChevronRight: () => (
@@ -135,7 +131,7 @@ const testimonials = [
   },
 ];
 
-const auto_sliding = [hero1,hero2,hero3,hero4,hero5];
+const auto_sliding = [hero1, hero2, hero3, hero4, hero5];
 
 function LandingPage() {
   const navigate = useNavigate();
@@ -143,14 +139,13 @@ function LandingPage() {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentIndex((prevIndex) => 
+      setCurrentIndex(prevIndex =>
         prevIndex === auto_sliding.length - 1 ? 0 : prevIndex + 1
       );
     }, 5000);
 
     return () => clearInterval(interval);
   }, []);
-
 
   return (
     <div className="min-h-screen bg-background">
@@ -166,7 +161,7 @@ function LandingPage() {
               src={image}
               alt={`Hero ${index + 1}`}
               className={`absolute w-full h-full object-cover transition-opacity duration-1000 ${
-                index === currentIndex ? 'opacity-100' : 'opacity-0'
+                index === currentIndex ? "opacity-100" : "opacity-0"
               }`}
             />
           ))}
@@ -174,10 +169,12 @@ function LandingPage() {
         <div className="absolute inset-0 z-20 flex items-center justify-center text-center">
           <div className="container mx-auto px-4">
             <h1 className="text-4xl text-center md:text-6xl font-bold text-background mb-6">
-              Helping Kids Shine <br />  Brighter Tomorrow
+              Helping Kids Shine <br /> Brighter Tomorrow
             </h1>
             <p className="text-xl text-background mb-8 max-w-3xl mx-auto">
-              Join us in supporting children's dreams and building a better future. Together, we can make every child's tomorrow brighter and full of hope. Your support matter!
+              Join us in supporting children's dreams and building a better
+              future. Together, we can make every child's tomorrow brighter and
+              full of hope. Your support matter!
             </p>
             <button
               onClick={() => navigate("/donate")}
@@ -187,7 +184,7 @@ function LandingPage() {
             </button>
           </div>
         </div>
-        
+
         {/* Optional: Add navigation dots */}
         <div className="absolute bottom-4 left-1/2 transform origin-left -translate-x-1/2 z-30 flex space-x-2">
           {auto_sliding.map((_, index) => (
@@ -195,9 +192,9 @@ function LandingPage() {
               key={index}
               onClick={() => setCurrentIndex(index)}
               className={`w-2 h-2 rounded-full transition-all duration-1000 ${
-                index === currentIndex 
-                  ? 'bg-background w-4' 
-                  : 'bg-background/60 hover:bg-background/80'
+                index === currentIndex
+                  ? "bg-background w-4"
+                  : "bg-background/60 hover:bg-background/80"
               }`}
               aria-label={`Go to slide ${index + 1}`}
             />
@@ -211,31 +208,50 @@ function LandingPage() {
             <h2 className="text-3xl font-bold text-text mb-8">Our Mission</h2>
             <div className="bg-primary/5 rounded-2xl p-8 shadow-lg">
               <p className="text-lg text-justify text-text/90 leading-relaxed mb-8">
-                At Bloom for Tomorrow Foundation, our mission is to extend a helping hand to children who lack the means to pursue their education,
-                 maintain their health, and access proper nutrition. We are committed to supporting these vulnerable children by providing them 
-                 with the essential resources and assistance they need to overcome barriers and thrive in life.
-                
+                At Bloom for Tomorrow Foundation, our mission is to extend a
+                helping hand to children who lack the means to pursue their
+                education, maintain their health, and access proper nutrition.
+                We are committed to supporting these vulnerable children by
+                providing them with the essential resources and assistance they
+                need to overcome barriers and thrive in life.
               </p>
               <p className="text-lg text-justify text-text/90 leading-relaxed mb-8">
-                Our goal is to empower every child to break free from the cycle of poverty, ill health, and hunger, and to create a future filled 
-                with opportunities and possibilities. Together, we strive to be a beacon of hope and a catalyst for positive change in the lives of these children, ensuring
-                that they have the chance to build a better tomorrow for themselves and their communities.
+                Our goal is to empower every child to break free from the cycle
+                of poverty, ill health, and hunger, and to create a future
+                filled with opportunities and possibilities. Together, we strive
+                to be a beacon of hope and a catalyst for positive change in the
+                lives of these children, ensuring that they have the chance to
+                build a better tomorrow for themselves and their communities.
               </p>
               <div className="grid md:grid-cols-3 gap-6 text-left">
                 <div className="p-4 bg-background rounded-lg shadow-sm">
-                  <h3 className="text-lg font-semibold text-primary mb-2">Education for All</h3>
-                  <p className="text-text/80">Providing access to quality education and essential learning materials to ensure every child can pursue their dreams and build a brighter future.
-                  </p>
-                </div>
-                <div className="p-4 bg-background rounded-lg shadow-sm">
-                  <h3 className="text-lg font-semibold text-primary mb-2">Health & Wellness</h3>
-                  <p className="text-text/80">Promoting the well-being of children by offering healthcare support, vaccinations, and awareness programs to keep them healthy and thriving.
-                  </p>
-                </div>
-                <div className="p-4 bg-background rounded-lg shadow-sm">
-                  <h3 className="text-lg font-semibold text-primary mb-2">Nourishment & Support</h3>
+                  <h3 className="text-lg font-semibold text-primary mb-2">
+                    Education for All
+                  </h3>
                   <p className="text-text/80">
-                  Delivering nutritious meals and resources to combat hunger and support the growth and development of vulnerable children.
+                    Providing access to quality education and essential learning
+                    materials to ensure every child can pursue their dreams and
+                    build a brighter future.
+                  </p>
+                </div>
+                <div className="p-4 bg-background rounded-lg shadow-sm">
+                  <h3 className="text-lg font-semibold text-primary mb-2">
+                    Health & Wellness
+                  </h3>
+                  <p className="text-text/80">
+                    Promoting the well-being of children by offering healthcare
+                    support, vaccinations, and awareness programs to keep them
+                    healthy and thriving.
+                  </p>
+                </div>
+                <div className="p-4 bg-background rounded-lg shadow-sm">
+                  <h3 className="text-lg font-semibold text-primary mb-2">
+                    Nourishment & Support
+                  </h3>
+                  <p className="text-text/80">
+                    Delivering nutritious meals and resources to combat hunger
+                    and support the growth and development of vulnerable
+                    children.
                   </p>
                 </div>
               </div>
@@ -252,7 +268,6 @@ function LandingPage() {
           </div>
         </div>
       </section>
-
 
       {/* Activities Section */}
 
@@ -368,10 +383,18 @@ function LandingPage() {
                   className="w-full px-4 py-2 rounded-lg bg-background/10 border border-background/20 focus:outline-none focus:border-primary"
                 />
                 <select className="w-full px-4 py-2 rounded-lg bg-background/10 border border-background/20 focus:outline-none focus:border-primary">
-                  <option value="" className="text-text">Select Subject</option>
-                  <option value="partnership" className="text-text">Partnership</option>
-                  <option value="volunteering" className="text-text">Volunteering</option>
-                  <option value="donation" className="text-text">Donation Support</option>
+                  <option value="" className="text-text">
+                    Select Subject
+                  </option>
+                  <option value="partnership" className="text-text">
+                    Partnership
+                  </option>
+                  <option value="volunteering" className="text-text">
+                    Volunteering
+                  </option>
+                  <option value="donation" className="text-text">
+                    Donation Support
+                  </option>
                 </select>
                 <textarea
                   placeholder="Your Message"
@@ -388,112 +411,10 @@ function LandingPage() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-text text-background py-12 border-t border-background/10">
-        <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-4 gap-8">
-            <div>
-              <img src={logo2} alt="" className="w-28" />
-              <p className="text-gray-300">
-                Empowering communities through sustainable development,
-                education, and environmental conservation.
-              </p>
-            </div>
-            <div>
-              <h3 className="text-xl font-bold mb-4">Quick Links</h3>
-              <ul className="space-y-2">
-                <li>
-                  <a href="#" className="text-gray-300 hover:text-background">
-                    Home
-                  </a>
-                </li>
-                <li>
-                  <a href="#activities" className="text-gray-300 hover:text-background">
-                    Our Activities
-                  </a>
-                </li>
-                <li>
-                  <a href="#getInvolved" className="text-gray-300 hover:text-background">
-                    Get Involved
-                  </a>
-                </li>
-                <li>
-                  <a href="#contact" className="text-gray-300 hover:text-background">
-                    Contact
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="text-xl font-bold mb-4">Support</h3>
-              <ul className="space-y-2">
-                <li>
-                  <a href="#" className="text-gray-300 hover:text-background">
-                    Donate
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="text-gray-300 hover:text-background">
-                    Volunteer
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="text-gray-300 hover:text-background">
-                    Partner with Us
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="text-xl font-bold mb-4">Stay Connected</h3>
-              <p className="text-gray-300 mb-4">
-                Subscribe to our newsletter for updates
-              </p>
-              <div className="flex">
-                <input
-                  type="email"
-                  placeholder="Your email"
-                  className="px-4 py-2 rounded-l-lg bg-background/10 border border-background/20 focus:outline-none focus:border-primary flex-grow"
-                />
-                <button className="bg-primary px-4 py-2 rounded-r-lg hover:bg-[#388E3C] transition-colors">
-                  Subscribe
-                </button>
-              </div>
-            </div>
-          </div>
-          <div className="mt-8 pt-8 border-t border-background/10 text-center text-gray-300">
-            <p>
-              &copy; 2024 Bloom for Tomorrow Foundation. All rights reserved.
-            </p>
-          <a href="https://wa.me/+25767949343" className="flex items-center justify-center">
-            <p className="mr-2">Designed and Developed by Hope Creative</p> | 
-          <span className="text-semibold ml-2 text-primary flex item-center"><Phone className="w-4 text-primary"/> +25767949343</span>
-          </a>
-          </div>
-        </div>
-      </footer>
+
+      <Footer />
     </div>
   );
 }
 
 export default LandingPage;
-
-// const activities = [
-//   {
-//     title: "Youth Education",
-//     description:
-//       "Empowering young minds through quality education and mentorship programs.",
-//     image: youth,
-//   },
-//   {
-//     title: "Community Health",
-//     description:
-//       "Providing accessible healthcare services and wellness education to communities.",
-//     image: community,
-//   },
-//   {
-//     title: "Environmental Projects",
-//     description:
-//       "Creating sustainable solutions for a greener, cleaner future.",
-//     image: environment_project,
-//   },
-// ];

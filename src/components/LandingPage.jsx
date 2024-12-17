@@ -152,7 +152,7 @@ function LandingPage() {
       {/* Navbar */}
       <NavBar />
       {/* Hero Section */}
-      <section className="relative h-screen">
+      <section id="home" className="relative h-screen">
         <div className="absolute inset-0 bg-text/70 z-10"></div>
         <div className="relative h-full overflow-hidden">
           {auto_sliding.map((image, index) => (
@@ -172,9 +172,9 @@ function LandingPage() {
               Helping Kids Shine <br /> Brighter Tomorrow
             </h1>
             <p className="text-xl text-background mb-8 max-w-3xl mx-auto">
-              Join us in supporting children's dreams and building a better
-              future. Together, we can make every child's tomorrow brighter and
-              full of hope. Your support matter!
+              Join us in supporting children&apos;s dreams and building a better
+              future. Together, we can make every child&apos;s tomorrow brighter
+              and full of hope. Your support matter!
             </p>
             <button
               onClick={() => navigate("/donate")}
@@ -350,18 +350,21 @@ function LandingPage() {
             <div>
               <h2 className="text-3xl font-bold mb-8">Get in Touch</h2>
               <div className="space-y-4">
-                <div className="flex items-center">
+                <a
+                  href="mailto:contact@bloomfortomorrow.org"
+                  className="flex items-center"
+                >
                   <icons.Mail />
-                  <span>contact@bftf.org</span>
-                </div>
-                <div className="flex items-center">
+                  <span>contact@bloomfortomorrow.org</span>
+                </a>
+                <a href="tel:+17809101651" className="flex items-center">
                   <icons.Phone />
-                  <span>+257 65 849 761</span>
-                </div>
-                <div className="flex items-center">
+                  <span>+1 (780) 910-1651</span>
+                </a>
+                {/* <div className="flex items-center">
                   <icons.MapPin />
                   <span>Bujumbura, Burundi</span>
-                </div>
+                </div> */}
               </div>
               <div className="flex space-x-4 mt-8">
                 <icons.Facebook />

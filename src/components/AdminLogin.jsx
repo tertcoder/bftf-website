@@ -119,7 +119,7 @@ const AdminLogin = () => {
                   href="#"
                   className="font-medium text-secondary hover:text-[#388E3C]"
                 >
-                  Forgot your password?jjj
+                  Forgot your password?
                 </a>
               </div>
             </div>

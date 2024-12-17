@@ -6,7 +6,7 @@ import { useActivities } from "../features/activities/queries";
 import Footer from "./Footer";
 
 const ActivityPosts = () => {
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("all");
 

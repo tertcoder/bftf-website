@@ -42,14 +42,6 @@ function NavBar() {
     }
   };
 
-  const navLinks = [
-    { name: "Home", href: "/#" },
-    { name: "Mission", href: "/#mission" },
-    { name: "Activities", href: "/#activities" },
-    { name: "Get Involved", href: "/#getInvolved" },
-    { name: "Contact", href: "/#contact" },
-  ];
-
   return (
     <>
       {/* Desktop/Mobile Navbar */}
@@ -69,18 +61,51 @@ function NavBar() {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-6">
-            {navLinks.map(link => (
-              <a
-                key={link.name}
-                href={link.href}
-                onClick={e => handleNavClick(e, link.href.split("#")[1])}
-                className={`${
-                  isScrolled ? "text-text" : "text-background"
-                } hover:text-primary font-semibold`}
-              >
-                {link.name}
-              </a>
-            ))}
+            <a
+              href="/#home"
+              onClick={e => handleNavClick(e, "#home")}
+              className={`${
+                isScrolled ? "text-text" : "text-background"
+              } hover:text-primary font-semibold`}
+            >
+              Home
+            </a>
+            <a
+              href="/#mission"
+              onClick={e => handleNavClick(e, "#mission")}
+              className={`${
+                isScrolled ? "text-text" : "text-background"
+              } hover:text-primary font-semibold`}
+            >
+              Mission
+            </a>
+            <a
+              href="/#activities"
+              onClick={e => handleNavClick(e, "#activities")}
+              className={`${
+                isScrolled ? "text-text" : "text-background"
+              } hover:text-primary font-semibold`}
+            >
+              Activities
+            </a>
+            <a
+              href="/#getInvolved"
+              onClick={e => handleNavClick(e, "#getInvolved")}
+              className={`${
+                isScrolled ? "text-text" : "text-background"
+              } hover:text-primary font-semibold`}
+            >
+              Get Involved
+            </a>
+            <a
+              href="/#contact"
+              onClick={e => handleNavClick(e, "#contact")}
+              className={`${
+                isScrolled ? "text-text" : "text-background"
+              } hover:text-primary font-semibold`}
+            >
+              Contact
+            </a>
             <button
               onClick={() => navigate("/donate")}
               className="bg-secondary font-semibold text-background px-6 py-2 rounded-full hover:bg-[#FF5722] transition-colors"
@@ -110,16 +135,41 @@ function NavBar() {
         } md:hidden`}
       >
         <div className="flex flex-col items-center justify-center h-full space-y-6 px-6">
-          {navLinks.map(link => (
-            <a
-              key={link.name}
-              href={link.href}
-              onClick={e => handleNavClick(e, link.href.split("#")[1])}
-              className="text-2xl font-semibold text-background hover:text-primary"
-            >
-              {link.name}
-            </a>
-          ))}
+          <a
+            href="/#home"
+            onClick={e => handleNavClick(e, "#")}
+            className="text-2xl font-semibold text-background hover:text-primary"
+          >
+            Home
+          </a>
+          <a
+            href="/#mission"
+            onClick={e => handleNavClick(e, "#mission")}
+            className="text-2xl font-semibold text-background hover:text-primary"
+          >
+            Mission
+          </a>
+          <a
+            href="/#activities"
+            onClick={e => handleNavClick(e, "#activities")}
+            className="text-2xl font-semibold text-background hover:text-primary"
+          >
+            Activities
+          </a>
+          <a
+            href="/#getInvolved"
+            onClick={e => handleNavClick(e, "#getInvolved")}
+            className="text-2xl font-semibold text-background hover:text-primary"
+          >
+            Get Involved
+          </a>
+          <a
+            href="/#contact"
+            onClick={e => handleNavClick(e, "#contact")}
+            className="text-2xl font-semibold text-background hover:text-primary"
+          >
+            Contact
+          </a>
           <button
             onClick={() => {
               navigate("/donate");

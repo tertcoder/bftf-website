@@ -137,7 +137,7 @@ function NavBar() {
         <div className="flex flex-col items-center justify-center h-full space-y-6 px-6">
           <a
             href="/#home"
-            onClick={e => handleNavClick(e, "#")}
+            onClick={e => handleNavClick(e, "#home")}
             className="text-2xl font-semibold text-background hover:text-primary"
           >
             Home

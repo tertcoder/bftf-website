@@ -22,8 +22,8 @@ export const apiActivities = {
     }
 
     // Apply pagination
-    const start = (page - 1) * pageSize;
-    query = query.range(start, start + pageSize - 1);
+    // const start = (page - 1) * pageSize;
+    // query = query.range(start, start + pageSize - 1);
 
     const { data, error, count } = await query;
 

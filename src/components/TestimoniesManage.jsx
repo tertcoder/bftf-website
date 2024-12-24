@@ -51,7 +51,7 @@ const AdminTestimonies = () => {
       name: formData.get("name"),
       role: formData.get("role"),
       content: formData.get("content"),
-      status: formData.get("status") || "draft",
+      status: "published",
     };
 
     if (currentTestimony) {
@@ -238,7 +238,7 @@ const AdminTestimonies = () => {
                     required
                   />
                 </div>
-                <div>
+                {/* <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">
                     Status
                   </label>
@@ -250,7 +250,7 @@ const AdminTestimonies = () => {
                     <option value="draft">Draft</option>
                     <option value="published">Published</option>
                   </select>
-                </div>
+                </div> */}
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">
                     Testimony Content

@@ -53,7 +53,7 @@ const AdminActivities = () => {
       category: formData.get("category"),
       date: formData.get("date"),
       description: formData.get("description"),
-      status: formData.get("status") || "draft",
+      status: "published",
     };
 
     if (currentActivity) {
@@ -270,7 +270,7 @@ const AdminActivities = () => {
                   required
                 />
               </div>
-              <div>
+              {/* <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Status
                 </label>
@@ -282,7 +282,7 @@ const AdminActivities = () => {
                   <option value="draft">Draft</option>
                   <option value="published">Published</option>
                 </select>
-              </div>
+              </div> */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Description

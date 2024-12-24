@@ -3,13 +3,12 @@ import hero2 from "../assets/hero-3.png";
 import hero3 from "../assets/hero-4.jpeg";
 import hero4 from "../assets/hero-5.jpg";
 import hero5 from "../assets/hero-6.jpg";
-import sarah from "../assets/sarah.jpeg";
-import jean from "../assets/Jean.jpg";
 import NavBar from "./NavBar";
 import { useNavigate } from "react-router-dom";
 import ActivitiesSection from "../sections/ActivitiesSection";
 import { useState, useEffect } from "react";
 import Footer from "./Footer";
+import TestimoniesSection from "./TestimoniesSection";
 
 const icons = {
   ChevronRight: () => (
@@ -114,22 +113,6 @@ const icons = {
     </svg>
   ),
 };
-const testimonials = [
-  {
-    name: "Sarah UWIMANA",
-    role: "Community Member",
-    quote:
-      "BFTF's youth education program transformed my daughter's future. Their dedication to community development is truly inspiring.",
-    image: sarah,
-  },
-  {
-    name: "Jean Claude HAKIZIMANA",
-    role: "Volunteer",
-    quote:
-      "Being part of BFTF's environmental initiatives has shown me how small actions can create lasting positive change.",
-    image: jean,
-  },
-];
 
 const auto_sliding = [hero1, hero2, hero3, hero4, hero5];
 
@@ -317,31 +300,7 @@ function LandingPage() {
       </section>
 
       {/* Testimonials Section */}
-      <section className="py-20 bg-backtext-background">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-text text-center mb-12">
-            Impact Stories
-          </h2>
-          <div className="grid md:grid-cols-2 gap-8">
-            {testimonials.map((testimonial, index) => (
-              <div key={index} className="bg-[#FDF5E6] rounded-lg p-6">
-                <div className="flex items-center mb-4">
-                  <img
-                    src={testimonial.image}
-                    alt={testimonial.name}
-                    className="w-16 h-16 rounded-full mr-4 object-cover"
-                  />
-                  <div>
-                    <h3 className="font-bold text-text">{testimonial.name}</h3>
-                    <p className="text-gray-600 text-sm">{testimonial.role}</p>
-                  </div>
-                </div>
-                <p className="text-gray-700 italic">{testimonial.quote}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <TestimoniesSection />
 
       {/* Contact Section */}
       <section id="contact" className="py-20 bg-text text-background">

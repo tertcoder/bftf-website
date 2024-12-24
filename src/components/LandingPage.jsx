@@ -9,6 +9,7 @@ import ActivitiesSection from "../sections/ActivitiesSection";
 import { useState, useEffect } from "react";
 import Footer from "./Footer";
 import TestimoniesSection from "./TestimoniesSection";
+import ContactMailing from "./ContactMailing";
 
 const icons = {
   ChevronRight: () => (
@@ -332,42 +333,7 @@ function LandingPage() {
                 <icons.Linkedin />
               </div>
             </div>
-            <div>
-              <form className="space-y-4">
-                <input
-                  type="text"
-                  placeholder="Your Name"
-                  className="w-full px-4 py-2 rounded-lg bg-background/10 border border-background/20 focus:outline-none focus:border-primary"
-                />
-                <input
-                  type="email"
-                  placeholder="Your Email"
-                  className="w-full px-4 py-2 rounded-lg bg-background/10 border border-background/20 focus:outline-none focus:border-primary"
-                />
-                <select className="w-full px-4 py-2 rounded-lg bg-background/10 border border-background/20 focus:outline-none focus:border-primary">
-                  <option value="" className="text-text">
-                    Select Subject
-                  </option>
-                  <option value="partnership" className="text-text">
-                    Partnership
-                  </option>
-                  <option value="volunteering" className="text-text">
-                    Volunteering
-                  </option>
-                  <option value="donation" className="text-text">
-                    Donation Support
-                  </option>
-                </select>
-                <textarea
-                  placeholder="Your Message"
-                  rows="4"
-                  className="w-full px-4 py-2 rounded-lg bg-background/10 border border-background/20 focus:outline-none focus:border-primary"
-                ></textarea>
-                <button className="bg-primary text-background px-6 py-2 rounded-full hover:bg-[#388E3C] transition-colors">
-                  Send Message
-                </button>
-              </form>
-            </div>
+            <ContactMailing />
           </div>
         </div>
       </section>

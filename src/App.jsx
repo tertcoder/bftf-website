@@ -15,6 +15,8 @@ import { Toaster } from "react-hot-toast";
 import DonationDetails from "./components/DonationDetails";
 import DashboardLayout from "./components/DashboardLayout";
 import AdminTestimonies from "./components/TestimoniesManage";
+import { init } from "@emailjs/browser";
+init("zJDH93ylq-x8L6JgV");
 
 const queryClient = new QueryClient({
   defaultOptions: {

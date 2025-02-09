@@ -10,6 +10,7 @@ import { useState, useEffect } from "react";
 import Footer from "./Footer";
 import TestimoniesSection from "./TestimoniesSection";
 import ContactMailing from "./ContactMailing";
+import FounderSection from "./FounderSection";
 
 const icons = {
   ChevronRight: () => (
@@ -239,19 +240,13 @@ function LandingPage() {
                   </p>
                 </div>
               </div>
-              {/* <div className="mt-8 flex justify-center">
-                <button 
-                  onClick={() => navigate("/about")}
-                  className="flex items-center text-primary hover:text-secondary transition-colors"
-                >
-                  Learn More About Our Work
-                  <ArrowRight className="ml-2 w-5 h-5" />
-                </button>
-              </div> */}
             </div>
           </div>
         </div>
       </section>
+
+      {/* Founder Section */}
+      <FounderSection />
 
       {/* Activities Section */}
 
@@ -269,12 +264,6 @@ function LandingPage() {
               <p className="text-gray-600 mb-4">
                 Support our mission with a one-time or recurring donation
               </p>
-              {/* <button
-                onClick={() => navigate("/")}
-                className="bg-secondary text-background px-6 py-2 rounded-full hover:bg-[#FF5722] transition-colors"
-              >
-                Donate Now
-              </button> */}
             </div>
             <div className="text-center flex flex-col items-center">
               <icons.Users />
@@ -282,9 +271,6 @@ function LandingPage() {
               <p className="text-gray-600 mb-4">
                 Join our community of dedicated volunteers
               </p>
-              {/* <button className="bg-primary text-background px-6 py-2 rounded-full hover:bg-[#388E3C] transition-colors">
-                Join Us
-              </button> */}
             </div>
             <div className="text-center flex flex-col items-center">
               <icons.BookOpen />
@@ -292,9 +278,6 @@ function LandingPage() {
               <p className="text-gray-600 mb-4">
                 Collaborate with us to create bigger impact
               </p>
-              {/* <button className="bg-primary text-background px-6 py-2 rounded-full hover:bg-[#388E3C] transition-colors">
-                Learn More
-              </button> */}
             </div>
           </div>
         </div>
@@ -321,10 +304,6 @@ function LandingPage() {
                   <icons.Phone />
                   <span>+1 (780) 910-1651</span>
                 </a>
-                {/* <div className="flex items-center">
-                  <icons.MapPin />
-                  <span>Bujumbura, Burundi</span>
-                </div> */}
               </div>
               <div className="flex space-x-4 mt-8">
                 <icons.Facebook />

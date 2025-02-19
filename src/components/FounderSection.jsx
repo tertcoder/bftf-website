@@ -8,11 +8,11 @@ const FounderSection = () => {
           <div className="bg-background rounded-2xl p-8 shadow-lg">
             <div className="grid md:grid-cols-2 gap-12 items-center">
               <div className="relative">
-                <div className="aspect-[3/4] rounded-lg overflow-hidden">
+                <div className="aspect-[4/5] rounded-lg overflow-hidden">
                   <img
                     src={founder}
                     alt="Nagasson NIZIGIYIMANA"
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover grayscale"
                   />
                 </div>
                 <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-secondary rounded-full flex items-center justify-center">
@@ -26,20 +26,36 @@ const FounderSection = () => {
                 <h2 className="text-3xl font-bold text-text">
                   Meet Our Founder
                 </h2>
-                <h3 className="text-xl font-semibold text-primary">Nagasson NIZIGIYIMANA</h3>
+                <h3 className="text-xl font-semibold text-primary">
+                  Nagasson NIZIGIYIMANA
+                </h3>
                 <div className="space-y-4">
                   <p className="text-text leading-relaxed">
-                    With over 15 years of experience in child welfare and
-                    education, Jane Doe founded Bloom for Tomorrow Foundation
-                    with a vision to create lasting change in children's lives.
-                    Her passion for helping underprivileged children stems from
-                    her own experiences working in various communities around
-                    the world.
+                    Every child deserves to grow up with dignity, hope and a
+                    promising future. Faced with the heartbreaking reality of
+                    malnutrition and child vulnerability, I felt a deep calling
+                    to take action. It's not just about providing aid, but about
+                    justice and humanity.
                   </p>
                   <p className="text-text leading-relaxed">
-                    Under her leadership, the foundation has helped thousands of
+                    My foundation was born from this conviction: to offer
+                    children in need not only food but also comfort,
+                    opportunities, and true hope. Together, we can make a
+                    difference, one child at a time.
+                  </p>
+                  {/* 
+                  <p className="text-text leading-relaxed">
+                    With over 15 years of experience in child welfare and
+                    education, Nagasson NIZIGIYIMANA founded Bloom for Tomorrow
+                    Foundation with a vision to create lasting change in
+                    children's lives. His passion for helping underprivileged
+                    children stems from his own experiences working in various
+                    communities around the world.
+                  </p>
+                  <p className="text-text leading-relaxed">
+                    Under his leadership, the foundation has helped thousands of
                     children access quality education, healthcare, and proper
-                    nutrition. Her innovative approach to sustainable
+                    nutrition. His innovative approach to sustainable
                     development and community engagement has created a model
                     that continues to inspire positive change.
                   </p>
@@ -47,7 +63,7 @@ const FounderSection = () => {
                     "Every child deserves a chance to bloom and reach their full
                     potential. Our mission is to provide them with the tools and
                     support they need to build a brighter tomorrow."
-                  </blockquote>
+                  </blockquote> */}
                 </div>
               </div>
             </div>

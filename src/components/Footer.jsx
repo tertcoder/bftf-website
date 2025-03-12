@@ -84,13 +84,13 @@ function Footer() {
             </div>
           </div>
         </div>
-        <div className="mt-8 pt-8 border-t border-background/10 text-center text-gray-300">
+        <div className="mt-8 pt-8 border-t border-background/10 text-center text-gray-300 italic">
           <p>&copy; 2024 Bloom for Tomorrow Foundation. All rights reserved.</p>
           <a
             href="https://wa.me/+25767949343"
             className="flex items-center justify-center"
           >
-            <p className="mr-2">Designed and Developed by Hope Creative</p> |
+            <p className="mr-2">Designed and Developed by INSIGHT MARKETING</p>|
             <span className="text-semibold ml-2 text-primary flex item-center">
               <Phone className="w-4 text-primary" /> +25767949343
             </span>

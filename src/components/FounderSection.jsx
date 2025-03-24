@@ -30,14 +30,14 @@ const FounderSection = () => {
                   Nagasson NIZIGIYIMANA
                 </h3>
                 <div className="space-y-4">
-                  <p className="text-text leading-relaxed">
+                  <p className="text-text italic leading-relaxed">
                     Every child deserves to grow up with dignity, hope and a
                     promising future. Faced with the heartbreaking reality of
                     malnutrition and child vulnerability, I felt a deep calling
                     to take action. It's not just about providing aid, but about
                     justice and humanity.
                   </p>
-                  <p className="text-text leading-relaxed">
+                  <p className="text-text italic leading-relaxed">
                     My foundation was born from this conviction: to offer
                     children in need not only food but also comfort,
                     opportunities, and true hope. Together, we can make a

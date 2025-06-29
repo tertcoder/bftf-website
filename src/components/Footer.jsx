@@ -85,7 +85,9 @@ function Footer() {
           </div>
         </div>
         <div className="mt-8 pt-8 border-t border-background/10 text-center text-gray-300 italic">
-          <p>&copy; 2024 Bloom for Tomorrow Foundation. All rights reserved.</p>
+          <p>
+            &copy; 2024 Bloom for Tomorrow Association. All rights reserved.
+          </p>
           <a
             href="https://wa.me/+25767949343"
             className="flex items-center justify-center"

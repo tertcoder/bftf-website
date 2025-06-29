@@ -193,7 +193,7 @@ function LandingPage() {
             <h2 className="text-3xl font-bold text-text mb-8">Our Mission</h2>
             <div className="bg-primary/5 rounded-2xl p-8 shadow-lg">
               <p className="text-lg text-justify text-text/90 leading-relaxed mb-8">
-                At Bloom for Tomorrow Foundation, our mission is to extend a
+                At Bloom for Tomorrow Association, our mission is to extend a
                 helping hand to children who lack the means to pursue their
                 education, maintain their health, and access proper nutrition.
                 We are committed to supporting these vulnerable children by

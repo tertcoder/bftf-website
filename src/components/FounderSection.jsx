@@ -38,7 +38,7 @@ const FounderSection = () => {
                     justice and humanity.
                   </p>
                   <p className="text-text italic leading-relaxed">
-                    My foundation was born from this conviction: to offer
+                    My association was born from this conviction: to offer
                     children in need not only food but also comfort,
                     opportunities, and true hope. Together, we can make a
                     difference, one child at a time.
@@ -47,13 +47,13 @@ const FounderSection = () => {
                   <p className="text-text leading-relaxed">
                     With over 15 years of experience in child welfare and
                     education, Nagasson NIZIGIYIMANA founded Bloom for Tomorrow
-                    Foundation with a vision to create lasting change in
+                    Association with a vision to create lasting change in
                     children's lives. His passion for helping underprivileged
                     children stems from his own experiences working in various
                     communities around the world.
                   </p>
                   <p className="text-text leading-relaxed">
-                    Under his leadership, the foundation has helped thousands of
+                    Under his leadership, the association has helped thousands of
                     children access quality education, healthcare, and proper
                     nutrition. His innovative approach to sustainable
                     development and community engagement has created a model

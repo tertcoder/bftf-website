@@ -11,7 +11,7 @@ const DonationDetails = () => {
       details: [
         {
           bankName: "Bank of Africa (BOA)",
-          accountName: "Bloom for Tomorrow Foundation",
+          accountName: "Bloom for Tomorrow Association",
           accountNumber: "1234-5678-9012-3456",
           swiftCode: "BOAFBI01",
           branch: "Bujumbura Main Branch",
@@ -32,12 +32,12 @@ const DonationDetails = () => {
         {
           provider: "Lumicash",
           number: "+1 (780) 910-1651",
-          accountName: "BFTF Foundation",
+          accountName: "BFTF Association",
         },
         {
           provider: "EcoCash",
           number: "+1 (780) 910-1651",
-          accountName: "BFTF Foundation",
+          accountName: "BFTF Association",
         },
       ],
     },
@@ -47,7 +47,7 @@ const DonationDetails = () => {
       details: [
         {
           email: "contact@bloomfortomorrow.org",
-          link: "paypal.me/bftfoundation",
+          link: "paypal.me/bftassociation",
         },
       ],
     },

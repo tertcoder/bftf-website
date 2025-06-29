@@ -54,7 +54,7 @@ function NavBar() {
           <Link to="/">
             <img
               src={logo}
-              alt="Logo - Bloom for Tomorrow Foundation"
+              alt="Logo - Bloom for Tomorrow Association"
               className="w-28"
             />
           </Link>
